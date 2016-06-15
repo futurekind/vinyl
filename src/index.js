@@ -1,6 +1,4 @@
 import React from 'react';
 import {render} from 'react-dom';
 
-import Kaunter from './components/Counter';
-
-render(<Kaunter />, document.getElementById('app'))
+render(<h1>Hey</h1>, document.getElementById('app'))
