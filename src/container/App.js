@@ -1,6 +1,7 @@
 import React, {Component} from 'react';
 import {connect} from 'react-redux';
 
+import AlbumsList from './AlbumsList';
 import {Header, Main, Loader} from '../presentation';
 import {fetchData} from '../redux/actions';
 
@@ -26,6 +27,7 @@ class App extends Component {
 
                 <Main>
                     <Loader active={isFetching} />
+                    <AlbumsList />
                 </Main>
 
             </div>
