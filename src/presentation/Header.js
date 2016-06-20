@@ -22,7 +22,7 @@ const Header = (props) => {
             <div className={`${styles.header__col}  ${styles['header__col--title']}`}>
                 <h1 className={styles.header__title}>{props.title}</h1>
             </div>
-            <div className={`${styles.header__col}  ${styles['is-center']}`}>
+            <div className={`${styles.header__col}  ${styles['is-right']}`}>
                 <HeaderRightAction
                     action={props.rightAction}
                     onClick={props.onRightActionClick}

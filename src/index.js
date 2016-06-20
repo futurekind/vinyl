@@ -6,7 +6,7 @@ import {fetchData} from './redux/actions'
 
 import App from './container/App';
 
-// render(<App />, document.getElementById('app'))
+render(<App />, document.getElementById('app'))
 
 store.subscribe(() => {
     console.log(store.getState());
