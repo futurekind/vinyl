@@ -58,6 +58,12 @@ module.exports = {
             {
                 test: /\.scss$/,
                 loaders: ["style", "css?modules", "postcss", "sass"]
+            },
+
+            {
+                test: /\.json$/,
+                exclude: /node_modules/,
+                loader: "json"
             }
         ]
     },
