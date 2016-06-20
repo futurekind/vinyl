@@ -5,17 +5,29 @@
     align-items: center;
     background-color: #333;
     color: #fff;
+    text-shadow: 0 2px 0 #000;
 
     &__col {
+        padding: 0 20px;
         flex: 1;
 
         &--title {
             flex: 2;
             text-align: center;
         }
+
+        &.is-right {
+            text-align: right;
+        }
     }
 
+    &__action {
+        display: block;
+        cursor: pointer;
+    }
+
+
     &__title {
-        text-shadow: 0 2px 0 #000;
+        margin: 0;
     }
 }

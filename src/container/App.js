@@ -8,7 +8,11 @@ class App extends Component {
     render() {
         return (
             <div className="app">
-                <Header title="Vinyl" />
+                <Header
+                    title="Vinyl"
+                    rightAction="Add"
+                    onRightActionClick={() => {console.log('Header Click')}}
+                />
             </div>
         );
     }
