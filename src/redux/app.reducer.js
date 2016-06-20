@@ -3,5 +3,13 @@ const initialState = {
 }
 
 export default (state = initialState, action) => {
-    return state
+    switch (action.type) {
+
+        case 'SET_IS_FETCHING':
+            return state
+            break;
+
+        default:
+            return state
+    }
 }
