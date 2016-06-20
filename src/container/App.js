@@ -17,7 +17,7 @@ class App extends Component {
                 />
 
                 <Main>
-                    <Loader />
+                    <Loader active={false} />
                 </Main>
 
             </div>
