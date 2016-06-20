@@ -1,0 +1,21 @@
+.header {
+    height: 64px;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    background-color: #333;
+    color: #fff;
+
+    &__col {
+        flex: 1;
+
+        &--title {
+            flex: 2;
+            text-align: center;
+        }
+    }
+
+    &__title {
+        text-shadow: 0 2px 0 #000;
+    }
+}
