@@ -8,7 +8,6 @@
     text-shadow: 0 2px 0 #000;
 
     &__col {
-        padding: 0 20px;
         flex: 1;
 
         &--title {
@@ -22,6 +21,7 @@
     }
 
     &__action {
+        padding: 20px;
         display: block;
         cursor: pointer;
     }
