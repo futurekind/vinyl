@@ -1,0 +1,12 @@
+.loader {
+    height: 100%;
+    display: flex;
+
+    &__spinner {
+        width: 80px;
+        height: 80px;
+        margin: auto;
+        position: relative;
+        background-color: #000;
+    }
+}

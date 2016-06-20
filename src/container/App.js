@@ -1,6 +1,6 @@
 import React, {Component} from 'react';
 
-import {Header, Main} from '../presentation';
+import {Header, Main, Loader} from '../presentation';
 
 import styles from './app.scss';
 
@@ -16,7 +16,9 @@ class App extends Component {
                     onRightActionClick={() => {console.log('Header Click')}}
                 />
 
-                <Main></Main>
+                <Main>
+                    <Loader />
+                </Main>
 
             </div>
         );
