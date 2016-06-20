@@ -1,7 +1,7 @@
 import React, {PropTypes as pt} from 'react';
 
 import styles from './header.scss'
-console.log(styles);
+
 const HeaderRightAction = props => {
 
     if(typeof props.action === 'function') {
