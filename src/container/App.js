@@ -13,7 +13,6 @@ class App extends Component {
     }
 
     render() {
-        console.log(this.props);
         const {isFetching} = this.props;
 
         return (

@@ -4,6 +4,8 @@
     left: -9999px;
     pointer-events: none;
     display: flex;
+    opacity: 0.01;
+    transition: opacity .2s;
 
     &__spinner {
         width: 60px;
@@ -12,7 +14,6 @@
         border-radius: 50%;
         position: relative;
         background-color: #333;
-        animation: loader-rotate 1.5s infinite linear;
 
         &:before,
         &:after {
@@ -51,13 +52,22 @@
         background: rgba(#fff, .2);
         box-shadow: 0 0 10px #fff;
         opacity: .7;
-        animation: loader-rotate--reverse 8s infinite both linear;
     }
 }
 
 .loader.is-active {
     height: calc(100% - 64px);
     position: static;
+    opacity: 1;
+    transition: opacity .1s;
+
+    .loader__spinner {
+        animation: loader-rotate 1.5s infinite linear;
+    }
+
+    .loader__glance {
+        animation: loader-rotate--reverse 8s infinite both linear;
+    }
 }
 
 @keyframes loader-rotate {
