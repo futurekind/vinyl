@@ -2,12 +2,13 @@ import React, {Component} from 'react';
 
 import {Header, Main} from '../presentation';
 
-import './app.scss';
+import styles from './app.scss';
 
 class App extends Component {
+
     render() {
         return (
-            <div className="app">
+            <div className={styles.app}>
 
                 <Header
                     title="Vinyl"

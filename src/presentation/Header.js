@@ -1,7 +1,7 @@
 import React, {PropTypes as pt} from 'react';
 
-import './header.scss'
-
+import styles from './header.scss'
+console.log(styles);
 const HeaderRightAction = props => {
 
     if(typeof props.action === 'function') {
@@ -11,18 +11,18 @@ const HeaderRightAction = props => {
     }
 
     return (
-        <span className="header__action" onClick={props.onClick}>{props.action}</span>
+        <span className={styles.header__action} onClick={props.onClick}>{props.action}</span>
     )
 }
 
 const Header = (props) => {
     return (
-        <header className="header">
-            <div className="header__col"></div>
-            <div className="header__col  header__col--title">
-                <h1 className="header__title">{props.title}</h1>
+        <header className={styles.header}>
+            <div className={styles.header__col}></div>
+            <div className={`${styles.header__col}  ${styles['header__col--title']}`}>
+                <h1 className={styles.header__title}>{props.title}</h1>
             </div>
-            <div className="header__col  is-right">
+            <div className={`${styles.header__col}  ${styles['is-center']}`}>
                 <HeaderRightAction
                     action={props.rightAction}
                     onClick={props.onRightActionClick}
