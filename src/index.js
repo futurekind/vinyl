@@ -6,3 +6,5 @@ import store from './redux';
 import App from './container/App';
 
 render(<App />, document.getElementById('app'))
+
+console.log(store.getState());
