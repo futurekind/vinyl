@@ -3,6 +3,8 @@ import {connect} from 'react-redux';
 
 import styles from './albums-list.scss';
 
+import {Album} from '../presentation';
+
 class AlbumsList extends Component {
     render() {
         const {albums} = this.props;
@@ -11,6 +13,9 @@ class AlbumsList extends Component {
 
         return (
             <div className={styles['albums-list']}>
+                {albums.map(album => {
+                    return <Album key={album.id} {...album} />
+                })}
             </div>
         )
     }
