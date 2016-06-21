@@ -4,5 +4,17 @@
         "title": "A Moon Shaped Pool",
         "artist": "Radiohead",
         "cover": "https://unsplash.it/300/300?image=200"
+    },
+    {
+        "id": "u4r9ujgper",
+        "title": "Demo 2",
+        "artist": "Beautypark",
+        "cover": "https://unsplash.it/300/300?image=500"
+    },
+    {
+        "id": "sseofkpojg",
+        "title": "Demo 2",
+        "artist": "Beautypark",
+        "cover": "https://unsplash.it/300/300?image=800"
     }
 ]

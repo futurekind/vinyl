@@ -6,7 +6,9 @@ export default (state = initialState, action) => {
     switch (action.type) {
 
         case 'SET_IS_FETCHING':
-            return state
+            return Object.assign({}, state.isFetching, {
+                isFetching: action.isFetching
+            })
             break;
 
         default:
