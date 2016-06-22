@@ -45,7 +45,7 @@
     &__glance {
         width: .1em;
         height: 55px;
-        margin-top: -2px;
+        margin-top: -30px;
         position: absolute;
         top: 50%;
         left: 50%;
@@ -66,7 +66,7 @@
     }
 
     .loader__glance {
-        animation: loader-rotate--reverse 8s infinite both linear;
+        animation: loader-rotate--reverse 5s infinite both linear;
     }
 }
 
