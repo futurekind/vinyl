@@ -1,5 +1,6 @@
 import React, {Component} from 'react';
 import {connect} from 'react-redux';
+import moment from 'moment';
 
 import styles from './albums-list.scss';
 
@@ -22,7 +23,13 @@ class AlbumsList extends Component {
 }
 
 const mapState = state => ({
-    albums: state.albums
+    albums: state.albums.sort((a, b) => {
+        if(moment(a).isAfter(moment(b))) {
+            return -1
+        } else {
+            return 1
+        }
+    })
 })
 
 export default connect(mapState)(AlbumsList);

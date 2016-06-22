@@ -3,24 +3,28 @@
         "id": "56372890ß",
         "title": "A Moon Shaped Pool",
         "artist": "Radiohead",
-        "cover": "https://unsplash.it/300/300?image=200"
+        "cover": "https://unsplash.it/300/300?image=200",
+        "addedAt": "2016-06-01T12:45.000Z"
     },
     {
         "id": "u4r9ujgper",
         "title": "Demo 2",
         "artist": "Beautypark",
-        "cover": "https://unsplash.it/300/300?image=500"
+        "cover": "https://unsplash.it/300/300?image=500",
+        "addedAt": "2016-06-05T09:32.000Z"
     },
     {
         "id": "sseofkpojg",
         "title": "Demo 2",
         "artist": "Beautypark",
-        "cover": "https://unsplash.it/300/300?image=800"
+        "cover": "https://unsplash.it/300/300?image=800",
+        "addedAt": "2016-06-12T18:57.000Z"
     },
     {
         "id": "dsadasddsad",
         "title": "Demo 2",
         "artist": "Beautypark",
-        "cover": "https://unsplash.it/300/300?image=400"
+        "cover": "https://unsplash.it/300/300?image=400",
+        "addedAt": "2016-06-22T09:16.000Z"
     }
 ]
