@@ -8,7 +8,27 @@
 
     &__cover {
         padding-bottom: 100%;
+        position: relative;
         background-color: #ccc;
+    }
+
+    &__loadinghelper {
+        width: 0;
+        height: 0;
+        position: absolute;
+        opacity: 0;
+    }
+
+    &__img {
+        height: 100%;
+        width: 100%;
+        position: absolute;
         background-size: cover;
+        opacity: 0.01;
+        transition: opacity .5s;
+
+        &.is-loaded {
+            opacity: 1;
+        }
     }
 }
