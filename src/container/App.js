@@ -2,7 +2,8 @@ import React, {Component} from 'react';
 import {connect} from 'react-redux';
 
 import AlbumsList from './AlbumsList';
-import {Header, Main, Loader} from '../presentation';
+import Main from './Main';
+import {Header, Loader} from '../presentation';
 import {fetchData} from '../redux/actions';
 
 import styles from './app.scss';
