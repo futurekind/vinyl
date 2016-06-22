@@ -1,0 +1,49 @@
+.view {
+    width: 0;
+    height: 0;
+    position: absolute;
+    top: 0;
+    left: -9999px;
+
+    &.is-open {
+        width: 100%;
+        height: 100%;
+        left: 0;
+        position: fixed;
+    }
+}
+
+.backdrop {
+    width: 100%;
+    height: 100%;
+    position: absolute;
+    top: 0;
+    left: 0;
+    background-color: rgba(0, 0, 0, .8);
+    opacity: 0.01;
+    transition: opacity .2s;
+
+    .is-open & {
+        opacity: 1
+    }
+}
+
+.content {
+    width: 100%;
+    height: 100%;
+    padding: 20px;
+    display: flex;
+    flex-direction: column;
+    position: absolute;
+    top: 0;
+    left: 0;
+    transform: translateY(-100%);
+    opacity: .01;
+    transition: transform .2s .1s,
+                opacity .2s .1s;
+
+    .is-open & {
+        transform: none;
+        opacity: 1;
+    }
+}

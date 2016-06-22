@@ -3,7 +3,7 @@ import {connect} from 'react-redux';
 
 import AlbumsList from './AlbumsList';
 import Main from './Main';
-import {Header, Loader} from '../presentation';
+import {Header, Loader, Dialog} from '../presentation';
 import {fetchData} from '../redux/actions';
 
 import styles from './app.scss';
@@ -30,6 +30,10 @@ class App extends Component {
                     <Loader active={isFetching} />
                     <AlbumsList />
                 </Main>
+
+                <Dialog open={true}>
+                    <div style={{color: '#fff'}}>jklsahdf ljdf jdflkj jkldF AJDF LKJADSLFKJ ALÖKDJSF ÖLKJDSFÖKLJKLDJFJEF EFJ</div>
+                </Dialog>
 
             </div>
         );
