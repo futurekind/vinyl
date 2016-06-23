@@ -21,7 +21,7 @@ class AddDialog extends Component {
                 <div className={`${styles.results} ${results.length > 0 ? styles['is-active'] : ''}`}>
                     {results.map(result => {
                         return (
-                            <div key={result.collectionId} className={styles.result}>
+                            <div ref={result.collectionId} key={result.collectionId} className={styles.result} onClick={this.handleResultClick.bind(this, result)} onTransitionEnd={this.handleOutTransitionEnd.bind(this)}>
                                 <div className={styles.cover}>
                                     <img src={result.artworkUrl60} alt="" />
                                 </div>
@@ -48,6 +48,16 @@ class AddDialog extends Component {
         const searchterm = target.querySelector('[name="search"]').value
 
         onSearch(searchterm);
+    }
+
+    handleResultClick(result) {
+        console.log(result);
+        const element = this.refs[result.collectionId];
+        element.classList.add(styles.out)
+    }
+
+    handleOutTransitionEnd(e) {
+        e.target.classList.add(styles.scale)
     }
 }
 
