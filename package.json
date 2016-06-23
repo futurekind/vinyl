@@ -37,6 +37,7 @@
   },
   "dependencies": {
     "moment": "^2.13.0",
-    "node-sass": "^3.7.0"
+    "node-sass": "^3.7.0",
+    "whatwg-fetch": "^1.0.0"
   }
 }

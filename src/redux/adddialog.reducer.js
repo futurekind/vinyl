@@ -18,6 +18,12 @@ export default (state = initialState, action) => {
             })
             break;
 
+        case 'SET_SEARCHRESULTS':
+            return Object.assign({}, state, {
+                results: action.results
+            })
+            break;
+
         default:
             return state
     }
