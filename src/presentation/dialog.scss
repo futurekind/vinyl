@@ -19,7 +19,7 @@
     position: absolute;
     top: 0;
     left: 0;
-    background-color: rgba(0, 0, 0, .8);
+    background-color: rgba(0, 0, 0, .9);
     opacity: 0.01;
     transition: opacity .2s;
 
@@ -46,4 +46,14 @@
         transform: none;
         opacity: 1;
     }
+}
+
+.close {
+    margin-bottom: 10px;
+    text-align: right;
+    color: #fff;
+}
+
+.closeicon {
+    cursor: pointer;
 }
