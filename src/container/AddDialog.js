@@ -2,7 +2,7 @@ import React, {Component} from 'react';
 import {connect} from 'react-redux';
 
 import {setAddDialogOpen} from '../redux/actions';
-import {Dialog} from '../presentation'
+import {Dialog, Searchfield, Loader} from '../presentation'
 
 class AddDialog extends Component {
     render() {
@@ -10,14 +10,26 @@ class AddDialog extends Component {
 
         return (
             <Dialog open={open} onDismiss={() => setOpen(false)}>
-                <div style={{color: '#fff'}}>-hallo</div>
+                <Searchfield
+                    onSearch={this.handleSearch.bind(this)}
+                    placeholder="Search for Artist or Album"
+                />
+                <Loader active={false} />
             </Dialog>
         )
+    }
+
+    handleSearch(e) {
+        e.preventDefault();
+        const target = e.target;
+        const searchterm = target.querySelector('[name="search"]').value
+
+        console.log(searchterm);
     }
 }
 
 const mapState = state => ({
-    open: state.app.dialogAddOpen
+    open: state.addDialog.isOpen
 })
 
 const mapDispatch = dispatch =>({

@@ -1,14 +1,14 @@
 const initialState = {
-    isFetching: false,
-    dialogAddOpen: false
+    isSearching: false,
+    results: [],
+    isOpen: false
 }
 
 export default (state = initialState, action) => {
     switch (action.type) {
-
-        case 'SET_IS_FETCHING':
+        case 'SET_DIALOG_ADD_OPEN':
             return Object.assign({}, state, {
-                isFetching: action.isFetching
+                isOpen: action.isOpen
             })
             break;
 
