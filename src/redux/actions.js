@@ -1,4 +1,4 @@
-import 'whatwg-fetch';
+import jsonp from 'jsonp';
 
 import mockAlbums from '../data/albums.json';
 
@@ -35,16 +35,10 @@ export const searchApi = (searchterm) => dispatch => {
     dispatch(setIsSearching(true))
     dispatch(setSearchResults([]))
 
-    fetch(`https://itunes.apple.com/search?term=${searchterm}&media=music&entity=album`)
-        .then(resp => resp.json())
-        .then(data => {
-            dispatch(setIsSearching(false))
-            dispatch(setSearchResults(data.results))
-        })
-        .catch(error => {
-            dispatch(setIsSearching(false))
-            console.error(error)
-        })
+    jsonp(`https://itunes.apple.com/search?term=${searchterm}&media=music&entity=album`, (error, data) => {
+        dispatch(setIsSearching(false))
+        dispatch(setSearchResults(data.results))
+    })
 }
 
 const setSearchResults = (results = []) => ({
