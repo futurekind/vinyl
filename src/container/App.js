@@ -2,9 +2,10 @@ import React, {Component} from 'react';
 import {connect} from 'react-redux';
 
 import AlbumsList from './AlbumsList';
+import AddDialog from './AddDialog';
 import Main from './Main';
-import {Header, Loader, Dialog} from '../presentation';
-import {fetchData} from '../redux/actions';
+import {Header, Loader} from '../presentation';
+import {fetchData, setAddDialogOpen} from '../redux/actions';
 
 import styles from './app.scss';
 
@@ -15,7 +16,7 @@ class App extends Component {
     }
 
     render() {
-        const {isFetching} = this.props;
+        const {isFetching, dialogAddOpen, setAddDialogOpen} = this.props;
 
         return (
             <div className={styles.app}>
@@ -23,7 +24,7 @@ class App extends Component {
                 <Header
                     title="Vinyl"
                     rightAction="Add"
-                    onRightActionClick={() => {console.log('Header Click')}}
+                    onRightActionClick={() => setAddDialogOpen(true)}
                 />
 
                 <Main>
@@ -31,9 +32,7 @@ class App extends Component {
                     <AlbumsList />
                 </Main>
 
-                <Dialog open={true}>
-                    <div style={{color: '#fff'}}>jklsahdf ljdf jdflkj jkldF AJDF LKJADSLFKJ ALÖKDJSF ÖLKJDSFÖKLJKLDJFJEF EFJ</div>
-                </Dialog>
+                <AddDialog />
 
             </div>
         );
@@ -41,12 +40,16 @@ class App extends Component {
 }
 
 const mapState = state => ({
-    isFetching: state.app.isFetching
+    isFetching: state.app.isFetching,
 })
 
 const mapDispatch = dispatch => ({
     fetchData() {
         dispatch(fetchData())
+    },
+
+    setAddDialogOpen(open) {
+        dispatch(setAddDialogOpen(open))
     }
 })
 
