@@ -23,3 +23,7 @@ export const setAddDialogOpen = (isOpen = false) => ({
     type: 'SET_DIALOG_ADD_OPEN',
     isOpen
 })
+export const setIsSearching = (isSearching) => ({
+    type: 'SET_IS_SEARCHING',
+    isSearching
+})

@@ -12,6 +12,12 @@ export default (state = initialState, action) => {
             })
             break;
 
+        case 'SET_IS_SEARCHING':
+            return Object.assign({}, state, {
+                isSearching: action.isSearching
+            })
+            break;
+
         default:
             return state
     }
