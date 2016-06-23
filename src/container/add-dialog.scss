@@ -1,0 +1,36 @@
+.results {
+    margin-top: 10px;
+    position: absolute;
+    left: -9999px;
+    opacity: .01;
+    flex: 1;
+    transition: opacity .2s;
+    color: #fff;
+    overflow-y: auto;
+    -webkit-overflow-scrolling: touch;
+
+    &.is-active {
+        position: static;
+        opacity: 1
+    }
+}
+
+.result {
+    margin-top: 10px;
+    margin-bottom: 10px;
+    display: flex;
+    align-items: center;
+}
+
+.cover {
+    padding-right: 10px;
+}
+
+.artist {
+    font-weight: bold;
+    margin-bottom: 5px;
+}
+
+.album {
+    font-size: 12px;
+}
