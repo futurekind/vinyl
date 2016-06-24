@@ -8,13 +8,13 @@ import styles from './add-dialog.scss'
 
 class AddDialog extends Component {
     render() {
-        const {open, setOpen, searching, results} = this.props;
+        const {open, setOpen, searching, results, onSearch} = this.props;
 
         return (
             <Dialog open={open} onDismiss={() => setOpen(false)}>
 
                 <Searchfield
-                    onSearch={this.handleSearch.bind(this)}
+                    onSearch={term => onSearch(term)}
                     placeholder="Search for Artist or Album"
                 />
 
@@ -38,16 +38,6 @@ class AddDialog extends Component {
 
             </Dialog>
         )
-    }
-
-    handleSearch(e) {
-        e.preventDefault();
-
-        const {onSearch} = this.props;
-        const target = e.target;
-        const searchterm = target.querySelector('[name="search"]').value
-
-        onSearch(searchterm);
     }
 
     handleResultClick(result) {
