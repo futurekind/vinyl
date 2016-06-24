@@ -1,5 +1,6 @@
 var webpack = require('webpack');
 var HtmlWebpackPlugin = require('html-webpack-plugin');
+var autoprefixer = require('autoprefixer');
 
 function getBabelPresets(defaultPresets) {
     var presets = defaultPresets;
@@ -52,8 +53,23 @@ module.exports = {
                 query: {
                     presets: getBabelPresets(['es2015', 'react'])
                 }
+            },
+
+            {
+                test: /\.scss$/,
+                loaders: ["style", "css?modules", "postcss", "sass"]
+            },
+
+            {
+                test: /\.json$/,
+                exclude: /node_modules/,
+                loader: "json"
             }
         ]
+    },
+
+    postcss: function() {
+        return [autoprefixer]
     },
 
     plugins: [

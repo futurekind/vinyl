@@ -1,0 +1,55 @@
+.results {
+    margin-top: 10px;
+    position: absolute;
+    left: -9999px;
+    opacity: .01;
+    flex: 1;
+    transition: opacity .2s;
+    color: #fff;
+    overflow-y: auto;
+    -webkit-overflow-scrolling: touch;
+
+    &.is-active {
+        position: static;
+        opacity: 1
+    }
+}
+
+.result {
+    max-height: 100px;
+    padding-top: 10px;
+    padding-bottom: 10px;
+    display: flex;
+    align-items: center;
+    // justify-content: space-between;
+    position: relative;
+    cursor: pointer;
+    transition: all .2s ease-in;
+}
+
+.cover {
+    padding-right: 10px;
+}
+
+.artist {
+    font-weight: bold;
+    margin-bottom: 5px;
+}
+
+.album {
+    font-size: 12px;
+}
+
+.addedmsg {
+    padding-left: 10px;
+    padding-right: 10px;
+    transform: scale(0);
+    transition: transform .2s;
+    text-align: right;
+    color: #9cc700;
+    flex: 1;
+
+    .is-added & {
+        transform: none;
+    }
+}
