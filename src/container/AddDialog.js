@@ -1,7 +1,7 @@
 import React, {Component} from 'react';
 import {connect} from 'react-redux';
 
-import {setAddDialogOpen, searchApi} from '../redux/actions';
+import {setAddDialogOpen, searchApi, addAlbum} from '../redux/actions';
 import {Dialog, Searchfield, Loader, Icon} from '../presentation'
 
 import styles from './add-dialog.scss'
@@ -47,9 +47,12 @@ class AddDialog extends Component {
     }
 
     handleResultClick(result) {
-        console.log(result);
+        const {onAddAlbum} = this.props
         const element = this.refs[result.collectionId];
+
         element.classList.add(styles['is-added'])
+
+        onAddAlbum(result)
     }
 }
 
@@ -66,6 +69,10 @@ const mapDispatch = dispatch =>({
 
     onSearch(searchterm) {
         dispatch(searchApi(searchterm))
+    },
+
+    onAddAlbum(data) {
+        dispatch(addAlbum(data))
     }
 })
 

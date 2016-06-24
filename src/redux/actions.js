@@ -8,7 +8,7 @@ export const fetchData = () => dispatch => {
     setTimeout(() => {
         dispatch({
             type: 'SET_ALBUMS',
-            albums: mockAlbums
+            albums: []
         })
 
         dispatch(setIsFetching(false))
@@ -40,6 +40,11 @@ export const searchApi = (searchterm) => dispatch => {
         dispatch(setSearchResults(data.results))
     })
 }
+
+export const addAlbum = (data) => ({
+    type: 'ADD_ALBUM',
+    data
+})
 
 const setSearchResults = (results = []) => ({
     type: 'SET_SEARCHRESULTS',
