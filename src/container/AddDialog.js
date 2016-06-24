@@ -2,7 +2,7 @@ import React, {Component} from 'react';
 import {connect} from 'react-redux';
 
 import {setAddDialogOpen, searchApi} from '../redux/actions';
-import {Dialog, Searchfield, Loader} from '../presentation'
+import {Dialog, Searchfield, Loader, Icon} from '../presentation'
 
 import styles from './add-dialog.scss'
 
@@ -21,13 +21,19 @@ class AddDialog extends Component {
                 <div className={`${styles.results} ${results.length > 0 ? styles['is-active'] : ''}`}>
                     {results.map(result => {
                         return (
-                            <div ref={result.collectionId} key={result.collectionId} className={styles.result} onClick={this.handleResultClick.bind(this, result)} onTransitionEnd={this.handleOutTransitionEnd.bind(this)}>
+                            <div ref={result.collectionId} key={result.collectionId} className={styles.result} onClick={this.handleResultClick.bind(this, result)}>
                                 <div className={styles.cover}>
                                     <img src={result.artworkUrl60} alt="" />
                                 </div>
                                 <div className={styles.titles}>
                                     <div className={styles.artist}>{result.artistName}</div>
                                     <div className={styles.album}>{result.collectionName}</div>
+                                </div>
+                                <div className={styles.addedmsg}>
+                                    <Icon>
+                                        <path d="M0 0h24v24H0z" fill="none"/>
+                                        <path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-2 15l-5-5 1.41-1.41L10 14.17l7.59-7.59L19 8l-9 9z"/>
+                                    </Icon>
                                 </div>
                             </div>
                         )
@@ -43,11 +49,7 @@ class AddDialog extends Component {
     handleResultClick(result) {
         console.log(result);
         const element = this.refs[result.collectionId];
-        element.classList.add(styles.out)
-    }
-
-    handleOutTransitionEnd(e) {
-        e.target.classList.add(styles.scale)
+        element.classList.add(styles['is-added'])
     }
 }
 
