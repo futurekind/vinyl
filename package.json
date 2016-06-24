@@ -6,6 +6,7 @@
   "scripts": {
     "start": "webpack-dev-server --content-base dist/  --inline --colors --port 8000 --hot --host 0.0.0.0",
     "build": "rm -rf dist && NODE_ENV=production webpack -p",
+    "deploy": "npm run build && node gh-pages",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "author": "Fabian Trinler <fabian.trinler@blateral.com>",
@@ -37,6 +38,7 @@
     "webpack-dev-server": "^1.14.1"
   },
   "dependencies": {
+    "gh-pages": "^0.11.0",
     "moment": "^2.13.0",
     "node-sass": "^3.7.0",
     "whatwg-fetch": "^1.0.0"
