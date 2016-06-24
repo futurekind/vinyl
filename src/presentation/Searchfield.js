@@ -13,7 +13,7 @@ const handleSubmit = (e, callback) => {
 
 const Searchfield = (props) => (
     <form className={styles.view} onSubmit={e => handleSubmit(e, props.onSearch)}>
-        <input type="text" name="search" autocomplete="off" className={styles.field} placeholder={props.placeholder} />
+        <input type="text" name="search" autoComplete="off" className={styles.field} placeholder={props.placeholder} />
     </form>
 )
 
