@@ -8,7 +8,7 @@ export const fetchData = () => dispatch => {
     setTimeout(() => {
         dispatch({
             type: 'SET_ALBUMS',
-            albums: []
+            albums: mockAlbums
         })
 
         dispatch(setIsFetching(false))
@@ -40,6 +40,11 @@ export const searchApi = (searchterm) => dispatch => {
         dispatch(setSearchResults(data.results))
     })
 }
+
+export const setActiveDetail = (detailId = '') => ({
+    type: 'SET_ACTIVE_DETAIL',
+    detailId
+})
 
 export const addAlbum = (data) => ({
     type: 'ADD_ALBUM',
