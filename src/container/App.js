@@ -4,7 +4,7 @@ import {connect} from 'react-redux';
 import AlbumsList from './AlbumsList';
 import AddDialog from './AddDialog';
 import Main from './Main';
-import {Header, Loader} from '../presentation';
+import {Header, Loader, Dialog} from '../presentation';
 import {fetchData, setAddDialogOpen} from '../redux/actions';
 
 import styles from './app.scss';
@@ -16,7 +16,7 @@ class App extends Component {
     }
 
     render() {
-        const {isFetching, dialogAddOpen, setAddDialogOpen} = this.props;
+        const {isFetching, dialogAddOpen, setAddDialogOpen, activeDetailId} = this.props;
 
         return (
             <div className={styles.app}>
@@ -34,6 +34,7 @@ class App extends Component {
 
                 <AddDialog />
 
+                <Dialog open={activeDetailId !== ''} />
             </div>
         );
     }
@@ -41,6 +42,7 @@ class App extends Component {
 
 const mapState = state => ({
     isFetching: state.app.isFetching,
+    activeDetailId: state.app.activeDetail
 })
 
 const mapDispatch = dispatch => ({

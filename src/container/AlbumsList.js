@@ -58,6 +58,8 @@ class AlbumsList extends Component {
 
         albumNode.style.willChange = `transform`
         albumNode.style.transform = `translate(${left}px, ${top}px)`
+        // albumNode.style.position = 'relative'
+        albumNode.style.zIndex = 100
     }
 }
 
