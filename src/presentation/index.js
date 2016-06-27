@@ -4,6 +4,7 @@ import Album from './Album';
 import Dialog from './Dialog';
 import Icon from './Icon';
 import Searchfield from './Searchfield';
+import Btn from './Btn';
 
 export {
     Header,
@@ -11,5 +12,6 @@ export {
     Album,
     Dialog,
     Icon,
-    Searchfield
+    Searchfield,
+    Btn
 }
