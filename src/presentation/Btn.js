@@ -8,7 +8,7 @@ const Btn = ({onClick, label}) => (
 
 Btn.defaultProps = {
     label: 'Button',
-    omClick: () => {}
+    onClick: () => {}
 }
 
 Btn.propTypes = {
