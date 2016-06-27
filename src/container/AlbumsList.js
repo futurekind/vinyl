@@ -1,8 +1,8 @@
 import React, {Component} from 'react';
 import {connect} from 'react-redux';
-import moment from 'moment';
 
 import {setAddDialogOpen} from '../redux/actions';
+import {sortAlbumsByAddedAt} from '../redux/root.reducer';
 
 import styles from './albums-list.scss';
 
@@ -32,13 +32,7 @@ class AlbumsList extends Component {
 }
 
 const mapState = state => ({
-    albums: state.albums.sort((a, b) => {
-        if(moment(a).isAfter(moment(b))) {
-            return -1
-        } else {
-            return 1
-        }
-    })
+    albums: sortAlbumsByAddedAt(state)
 })
 
 const mapDispatch = dispatch => ({

@@ -1,7 +1,7 @@
 import {combineReducers} from 'redux';
 
 import app from './app.reducer'
-import albums from './albums.reducer'
+import albums, * as fromAlbums from './albums.reducer'
 import addDialog from './adddialog.reducer'
 
 export default combineReducers({
@@ -9,3 +9,5 @@ export default combineReducers({
     albums,
     addDialog
 })
+
+export const sortAlbumsByAddedAt = (state) => fromAlbums.sortByAddedAt(state.albums)

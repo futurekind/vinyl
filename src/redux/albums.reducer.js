@@ -1,3 +1,4 @@
+import moment from 'moment';
 const initialState = [];
 
 export default (state = initialState, action) => {
@@ -23,4 +24,13 @@ export default (state = initialState, action) => {
         default:
             return state
     }
+}
+
+export const sortByAddedAt = (state) => {
+    return state.sort((a, b) => {
+        const aAddedtAt = moment(a.addedAt);
+        const bAddedtAt = moment(b.addedAt);
+
+        return bAddedtAt.isAfter(aAddedtAt)
+    });
 }
