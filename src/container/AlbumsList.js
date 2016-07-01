@@ -2,7 +2,7 @@ import React, {Component} from 'react';
 import {findDOMNode} from 'react-dom';
 import {connect} from 'react-redux';
 
-import {setAddDialogOpen, setActiveDetail} from '../redux/actions';
+import {setAddDialogOpen, setActiveDetail, setDetailDialogOpen} from '../redux/actions';
 import {sortAlbumsByAddedAt} from '../redux/root.reducer';
 
 import styles from './albums-list.scss';
@@ -39,9 +39,10 @@ class AlbumsList extends Component {
     }
 
     handleAlbumClick(id) {
-        const {onSetActiveDetail} = this.props;
+        const {onSetActiveDetail, onSetDetailDialogOpen} = this.props;
 
         onSetActiveDetail(id);
+        onSetDetailDialogOpen(true);
         // this.moveAlbum(id)
     }
 
@@ -73,6 +74,10 @@ const mapDispatch = dispatch => ({
 
     onSetActiveDetail(id) {
         dispatch(setActiveDetail(id))
+    },
+
+    onSetDetailDialogOpen(open) {
+        dispatch(setDetailDialogOpen(open))
     }
 })
 
