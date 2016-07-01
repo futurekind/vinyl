@@ -36,7 +36,7 @@ class AddDialog extends Component {
         return (
             <div ref={result.collectionId} key={result.collectionId} className={`${styles.result} ${hasBeenAdded ? styles['is-added'] : ''}`} onClick={this.handleResultClick.bind(this, result, hasBeenAdded)}>
                 <div className={styles.cover}>
-                    <img src={result.artworkUrl60} alt="" />
+                    <img src={result.artworkUrl100} alt="" />
                 </div>
                 <div className={styles.titles}>
                     <div className={styles.artist}>{result.artistName}</div>
