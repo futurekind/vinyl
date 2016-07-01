@@ -13,3 +13,4 @@ export default combineReducers({
 })
 
 export const sortAlbumsByAddedAt = (state) => fromAlbums.sortByAddedAt(state.albums)
+export const getAlbumById = (state, id) => fromAlbums.getAlbumById(state.albums, id)

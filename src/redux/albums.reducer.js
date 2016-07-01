@@ -34,3 +34,7 @@ export const sortByAddedAt = (state) => {
         return bAddedtAt.isAfter(aAddedtAt)
     });
 }
+
+export const getAlbumById = (state, id) => {
+    return state.filter(album => album.id === id)[0]
+}
