@@ -56,6 +56,18 @@ export const setDetailDialogOpen = (isOpen) => ({
     isOpen
 })
 
+export const fetchTracklistForAlbum = (albumId) => dispatch => {
+    jsonp(`https://itunes.apple.com/lookup?id=${albumId}&entity=song`, (error, data) => {
+        const tracklist = data.results.slice(1).map(track => track.trackName);
+
+        dispatch({
+            type: 'SET_TRACKLIST',
+            albumId,
+            tracklist
+        })
+    })
+}
+
 const setSearchResults = (results = []) => ({
     type: 'SET_SEARCHRESULTS',
     results
