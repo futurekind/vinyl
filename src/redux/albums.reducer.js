@@ -31,7 +31,13 @@ export const sortByAddedAt = (state) => {
         const aAddedtAt = moment(a.addedAt);
         const bAddedtAt = moment(b.addedAt);
 
-        return bAddedtAt.isAfter(aAddedtAt)
+        if(aAddedtAt.isAfter(bAddedtAt)) {
+            return -1
+        }
+
+        if(aAddedtAt.isBefore(bAddedtAt)) {
+            return 1
+        }
     });
 }
 
