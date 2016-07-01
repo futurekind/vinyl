@@ -42,12 +42,10 @@ class AlbumsList extends Component {
         const {onSetActiveDetail} = this.props;
 
         onSetActiveDetail(id);
-        this.moveAlbum(id)
+        // this.moveAlbum(id)
     }
 
     moveAlbum(id) {
-        const {activeDetailId} = this.props;
-
         const albumNode = findDOMNode(this.refs[id]);
 
         const containerBCR = this.refs.container.getBoundingClientRect()
