@@ -3,8 +3,9 @@ import {connect} from 'react-redux';
 
 import AlbumsList from './AlbumsList';
 import AddDialog from './AddDialog';
+import DetailDialog from './DetailDialog';
 import Main from './Main';
-import {Header, Loader, Dialog} from '../presentation';
+import {Header, Loader} from '../presentation';
 import {fetchData, setAddDialogOpen} from '../redux/actions';
 
 import styles from './app.scss';
@@ -33,8 +34,8 @@ class App extends Component {
                 </Main>
 
                 <AddDialog />
+                <DetailDialog />
 
-                <Dialog open={activeDetailId !== ''} />
             </div>
         );
     }
