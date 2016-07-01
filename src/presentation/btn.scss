@@ -1,0 +1,14 @@
+.btn {
+    padding: 10px 15px;
+    border: none;
+    border-radius: 3px;
+    background: #333;
+    font-size: 14px;
+    color: #fff;
+
+    &:active {
+        transform: scale(.98)
+    }
+
+    &:focus {outline: none}
+}

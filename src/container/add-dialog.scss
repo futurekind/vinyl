@@ -17,8 +17,8 @@
 
 .result {
     max-height: 100px;
-    padding-top: 10px;
-    padding-bottom: 10px;
+    padding-top: 5px;
+    padding-bottom: 5px;
     display: flex;
     align-items: center;
     // justify-content: space-between;
@@ -28,7 +28,15 @@
 }
 
 .cover {
-    padding-right: 10px;
+    width: 20%;
+
+    & > img {
+        width: 100%;
+    }
+}
+
+.titles {
+    padding-left: 10px;
 }
 
 .artist {
@@ -47,7 +55,7 @@
     transition: transform .2s;
     text-align: right;
     color: #9cc700;
-    flex: 1;
+    // flex: 1;
 
     .is-added & {
         transform: none;

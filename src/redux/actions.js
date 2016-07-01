@@ -8,7 +8,7 @@ export const fetchData = () => dispatch => {
     setTimeout(() => {
         dispatch({
             type: 'SET_ALBUMS',
-            albums: []
+            albums: mockAlbums
         })
 
         dispatch(setIsFetching(false))
@@ -41,9 +41,19 @@ export const searchApi = (searchterm) => dispatch => {
     })
 }
 
+export const setActiveDetail = (detailId = '') => ({
+    type: 'SET_ACTIVE_DETAIL',
+    detailId
+})
+
 export const addAlbum = (data) => ({
     type: 'ADD_ALBUM',
     data
+})
+
+export const setDetailDialogOpen = (isOpen) => ({
+    type: 'SET_DIALOG_DETAIL_OPEN',
+    isOpen
 })
 
 const setSearchResults = (results = []) => ({
