@@ -51,6 +51,11 @@ export const addAlbum = (data) => ({
     data
 })
 
+export const setDetailDialogOpen = (isOpen) => ({
+    type: 'SET_DIALOG_DETAIL_OPEN',
+    isOpen
+})
+
 const setSearchResults = (results = []) => ({
     type: 'SET_SEARCHRESULTS',
     results
