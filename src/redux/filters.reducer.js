@@ -1,6 +1,6 @@
 const initialState = {
     open: false,
-    filter: 0
+    activeFilter: 0
 }
 
 export default (state = initialState, action) => {

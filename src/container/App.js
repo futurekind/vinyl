@@ -5,6 +5,7 @@ import AlbumsList from './AlbumsList';
 import AddDialog from './AddDialog';
 import DetailDialog from './DetailDialog';
 import Main from './Main';
+import Filters from './Filters';
 import {Header, Loader} from '../presentation';
 import {setAddDialogOpen, setFilterSettingsOpen} from '../redux/actions';
 
@@ -32,7 +33,8 @@ class App extends Component {
                         <AlbumsList />
                     </Main>
                 </div>
-
+                
+                <Filters />
                 <AddDialog />
                 <DetailDialog />
 
