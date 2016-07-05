@@ -1,10 +1,10 @@
 import React, {Component} from 'react';
 import {connect} from 'react-redux';
 
-import {setDetailDialogOpen, setActiveDetail, fetchTracklistForAlbum} from '../redux/actions';
+import {setDetailDialogOpen, setActiveDetail, fetchTracklistForAlbum, deleteAlbum} from '../redux/actions';
 import {getAlbumById} from '../redux/root.reducer';
 
-import {Dialog} from '../presentation';
+import {Dialog, Icon} from '../presentation';
 
 import style from './detail-dialog.scss';
 
@@ -40,6 +40,14 @@ class DetailDialog extends Component {
                 <div className={style.tracklist}>
                     {this.renderTracklist(album)}
                 </div>
+                <div className={style.footer}>
+                    <div className={style.footer__left}></div>
+                    <div className={style.footer__right}>
+                        <Icon onClick={this.handleDeleteAlbum.bind(this)}>
+                            <path d="M6 19c0 1.1.9 2 2 2h8c1.1 0 2-.9 2-2V7H6v12zM19 4h-3.5l-1-1h-5l-1 1H5v2h14V4z"/>
+                        </Icon>
+                    </div>
+                </div>
             </Dialog>
         )
     }
@@ -69,6 +77,15 @@ class DetailDialog extends Component {
         onSetDetailDialogOpen(false)
         onSetActiveDetail(-1)
     }
+
+    handleDeleteAlbum() {
+        const {onDeleteAlbum, album} = this.props;
+
+        if(confirm('Delete this album?')) {
+            onDeleteAlbum(album.id)
+            this.handleDismiss()
+        }
+    }
 }
 
 const mapState = state => ({
@@ -88,6 +105,10 @@ const mapDispatch = dispatch => ({
 
     onFetchTracklist(albumId) {
         dispatch(fetchTracklistForAlbum(albumId))
+    },
+
+    onDeleteAlbum(id) {
+        dispatch(deleteAlbum(id))
     }
 
 })

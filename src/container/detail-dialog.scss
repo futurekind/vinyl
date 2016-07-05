@@ -56,3 +56,16 @@
         font-weight: bold;
     }
 }
+
+.footer {
+    padding: 30px 0;
+    display: flex;
+    justify-content: space-between;
+    color: #fff;
+
+    &__left {}
+
+    &__right {
+        text-align: right;
+    }
+}

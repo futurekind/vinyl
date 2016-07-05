@@ -52,6 +52,11 @@ export const fetchTracklistForAlbum = (albumId) => dispatch => {
     })
 }
 
+export const deleteAlbum = id => ({
+    type: 'DELETE_ALBUM',
+    id
+})
+
 const setSearchResults = (results = []) => ({
     type: 'SET_SEARCHRESULTS',
     results
