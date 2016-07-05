@@ -44,7 +44,7 @@ class App extends Component {
 const mapState = state => ({
     isFetching: state.app.isFetching,
     activeDetailId: state.app.activeDetail,
-    filterSettingsOpen: state.app.filterSettingsOpen
+    filterSettingsOpen: state.filters.open
 })
 
 const mapDispatch = dispatch => ({
