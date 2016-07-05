@@ -39,7 +39,20 @@ export default (state = initialState, action) => {
                 ...state.slice(0, indexToDelete),
                 ...state.slice(indexToDelete + 1),
             ];
-            
+
+            break;
+
+        case 'SET_ALBUM_CATEGORY':
+            const indexForCategory = state.findIndex(album => album.id === action.id);
+
+            return [
+                ...state.slice(0, indexForCategory),
+                Object.assign({}, state[indexForCategory], {
+                    category: action.category
+                }),
+                ...state.slice(indexForCategory + 1)
+            ];
+
             break;
 
         default:
