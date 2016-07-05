@@ -22,14 +22,24 @@ export default (state = initialState, action) => {
             break;
 
         case 'SET_TRACKLIST':
-            let index = state.findIndex(album => album.id === action.albumId);
+            const indexForTracklist = state.findIndex(album => album.id === action.albumId);
             return [
-                ...state.slice(0, index),
-                Object.assign({}, state[index], {
+                ...state.slice(0, indexForTracklist),
+                Object.assign({}, state[indexForTracklist], {
                     tracklist: action.tracklist
                 }),
-                ...state.slice(index + 1)
+                ...state.slice(indexForTracklist + 1)
             ];
+            break;
+
+        case 'DELETE_ALBUM':
+            const indexToDelete = state.findIndex(album => album.id === action.id);
+
+            return [
+                ...state.slice(0, indexToDelete),
+                ...state.slice(indexToDelete + 1),
+            ];
+            
             break;
 
         default:
