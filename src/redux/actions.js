@@ -57,6 +57,12 @@ export const deleteAlbum = id => ({
     id
 })
 
+export const setAlbumCategory = (id, category) => ({
+    type: 'SET_ALBUM_CATEGORY',
+    id,
+    category
+})
+
 const setSearchResults = (results = []) => ({
     type: 'SET_SEARCHRESULTS',
     results
