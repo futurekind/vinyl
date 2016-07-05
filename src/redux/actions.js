@@ -63,6 +63,11 @@ export const setAlbumCategory = (id, category) => ({
     category
 })
 
+export const setFilterSettingsOpen = (isOpen) => ({
+    type: 'SET_FILTER_SETTINGS_OPEN',
+    isOpen
+})
+
 const setSearchResults = (results = []) => ({
     type: 'SET_SEARCHRESULTS',
     results
