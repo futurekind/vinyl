@@ -14,5 +14,5 @@ export default combineReducers({
     filters
 })
 
-export const sortAlbumsByAddedAt = (state) => fromAlbums.sortByAddedAt(state.albums)
 export const getAlbumById = (state, id) => fromAlbums.getAlbumById(state.albums, id)
+export const getAlbumsByCategoryFilter = (state) => fromAlbums.getAlbumsByCategoryFilter(state.albums, state.filters.activeFilter)

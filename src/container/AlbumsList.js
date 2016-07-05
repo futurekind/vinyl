@@ -3,7 +3,7 @@ import {findDOMNode} from 'react-dom';
 import {connect} from 'react-redux';
 
 import {setAddDialogOpen, setActiveDetail, setDetailDialogOpen} from '../redux/actions';
-import {sortAlbumsByAddedAt} from '../redux/root.reducer';
+import {getAlbumsByCategoryFilter} from '../redux/root.reducer';
 
 import styles from './albums-list.scss';
 
@@ -62,10 +62,12 @@ class AlbumsList extends Component {
     }
 }
 
-const mapState = state => ({
-    albums: sortAlbumsByAddedAt(state),
-    activeDetailId: state.app.activeDetail
-})
+const mapState = state => {
+    return {
+        albums: getAlbumsByCategoryFilter(state),
+        activeDetailId: state.app.activeDetail
+    }
+}
 
 const mapDispatch = dispatch => ({
     onOpenDialog() {
