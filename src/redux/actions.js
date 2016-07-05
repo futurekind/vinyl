@@ -57,6 +57,22 @@ export const deleteAlbum = id => ({
     id
 })
 
+export const setAlbumCategory = (id, category) => ({
+    type: 'SET_ALBUM_CATEGORY',
+    id,
+    category
+})
+
+export const setFilterSettingsOpen = (isOpen) => ({
+    type: 'SET_FILTER_SETTINGS_OPEN',
+    isOpen
+})
+
+export const setActiveFilter = filter => ({
+    type: 'SET_ACTIVE_FILTER',
+    filter
+})
+
 const setSearchResults = (results = []) => ({
     type: 'SET_SEARCHRESULTS',
     results

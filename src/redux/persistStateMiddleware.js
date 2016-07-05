@@ -9,6 +9,7 @@ export default store => next => action => {
         case 'ADD_ALBUM':
         case 'SET_TRACKLIST':
         case 'DELETE_ALBUM':
+        case 'SET_ALBUM_CATEGORY':
             const state = JSON.stringify(store.getState().albums);
             localStorage.setItem(LOCALSTORAGE_KEY, state);
             break;

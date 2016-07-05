@@ -2,8 +2,8 @@ import React, {Component} from 'react';
 import {findDOMNode} from 'react-dom';
 import {connect} from 'react-redux';
 
-import {setAddDialogOpen, setActiveDetail, setDetailDialogOpen} from '../redux/actions';
-import {sortAlbumsByAddedAt} from '../redux/root.reducer';
+import {setAddDialogOpen, setActiveDetail, setDetailDialogOpen, setFilterSettingsOpen} from '../redux/actions';
+import {getAlbumsByCategoryFilter} from '../redux/root.reducer';
 
 import styles from './albums-list.scss';
 
@@ -12,13 +12,22 @@ import {Album, Btn} from '../presentation';
 class AlbumsList extends Component {
 
     render() {
-        const {albums, onOpenDialog, activeDetailId} = this.props;
+        const {albums, onOpenDialog, activeDetailId, activeFilter, onSetFilterSettingsOpen} = this.props;
 
-        if(albums.length === 0) {
+        if(albums.length === 0 && activeFilter === 0) {
             return (
                 <div className={styles.empty}>
                     <span>You have no albums in your list.</span>
                     <Btn label="Go, add some albums" onClick={() => onOpenDialog()} />
+                </div>
+            )
+        }
+
+        if(albums.length === 0 && activeFilter !== 0) {
+            return (
+                <div className={styles.empty}>
+                    <span>You have no albums in this list.</span>
+                    <Btn label="Switch lists" onClick={() => onSetFilterSettingsOpen(true)} />
                 </div>
             )
         }
@@ -62,10 +71,13 @@ class AlbumsList extends Component {
     }
 }
 
-const mapState = state => ({
-    albums: sortAlbumsByAddedAt(state),
-    activeDetailId: state.app.activeDetail
-})
+const mapState = state => {
+    return {
+        albums: getAlbumsByCategoryFilter(state),
+        activeDetailId: state.app.activeDetail,
+        activeFilter: state.filters.activeFilter
+    }
+}
 
 const mapDispatch = dispatch => ({
     onOpenDialog() {
@@ -78,6 +90,10 @@ const mapDispatch = dispatch => ({
 
     onSetDetailDialogOpen(open) {
         dispatch(setDetailDialogOpen(open))
+    },
+
+    onSetFilterSettingsOpen(open) {
+        dispatch(setFilterSettingsOpen(open))
     }
 })
 

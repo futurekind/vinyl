@@ -5,30 +5,36 @@ import AlbumsList from './AlbumsList';
 import AddDialog from './AddDialog';
 import DetailDialog from './DetailDialog';
 import Main from './Main';
+import Filters from './Filters';
 import {Header, Loader} from '../presentation';
-import {setAddDialogOpen} from '../redux/actions';
+import {setAddDialogOpen, setFilterSettingsOpen} from '../redux/actions';
 
 import styles from './app.scss';
 
 class App extends Component {
 
     render() {
-        const {isFetching, dialogAddOpen, setAddDialogOpen, activeDetailId} = this.props;
+        const {isFetching, dialogAddOpen, setAddDialogOpen, activeDetailId, filterSettingsOpen, onSetFilterSettingsOpen} = this.props;
 
         return (
             <div className={styles.app}>
 
-                <Header
-                    title="Vinyl"
-                    rightAction="Add"
-                    onRightActionClick={() => setAddDialogOpen(true)}
-                />
+                <div className={`${styles.main} ${filterSettingsOpen ? styles['main--open'] : ''}`}>
+                    <Header
+                        title="Recordman"
+                        rightAction="Add"
+                        onRightActionClick={() => setAddDialogOpen(true)}
+                        leftAction="Filter"
+                        onLeftActionClick={() => onSetFilterSettingsOpen(!filterSettingsOpen)}
+                    />
 
-                <Main>
-                    <Loader active={isFetching} />
-                    <AlbumsList />
-                </Main>
-
+                    <Main>
+                        <Loader active={isFetching} />
+                        <AlbumsList />
+                    </Main>
+                </div>
+                
+                <Filters />
                 <AddDialog />
                 <DetailDialog />
 
@@ -39,7 +45,8 @@ class App extends Component {
 
 const mapState = state => ({
     isFetching: state.app.isFetching,
-    activeDetailId: state.app.activeDetail
+    activeDetailId: state.app.activeDetail,
+    filterSettingsOpen: state.filters.open
 })
 
 const mapDispatch = dispatch => ({
@@ -49,6 +56,10 @@ const mapDispatch = dispatch => ({
 
     setAddDialogOpen(open) {
         dispatch(setAddDialogOpen(open))
+    },
+
+    onSetFilterSettingsOpen(open) {
+        dispatch(setFilterSettingsOpen(open))
     }
 })
 

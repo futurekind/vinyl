@@ -4,13 +4,15 @@ import app from './app.reducer'
 import albums, * as fromAlbums from './albums.reducer'
 import addDialog from './adddialog.reducer'
 import detailDialog from './detaildialog.reducer'
+import filters from './filters.reducer'
 
 export default combineReducers({
     app,
     albums,
     addDialog,
-    detailDialog
+    detailDialog,
+    filters
 })
 
-export const sortAlbumsByAddedAt = (state) => fromAlbums.sortByAddedAt(state.albums)
 export const getAlbumById = (state, id) => fromAlbums.getAlbumById(state.albums, id)
+export const getAlbumsByCategoryFilter = (state) => fromAlbums.getAlbumsByCategoryFilter(state.albums, state.filters.activeFilter)

@@ -39,7 +39,20 @@ export default (state = initialState, action) => {
                 ...state.slice(0, indexToDelete),
                 ...state.slice(indexToDelete + 1),
             ];
-            
+
+            break;
+
+        case 'SET_ALBUM_CATEGORY':
+            const indexForCategory = state.findIndex(album => album.id === action.id);
+
+            return [
+                ...state.slice(0, indexForCategory),
+                Object.assign({}, state[indexForCategory], {
+                    category: action.category
+                }),
+                ...state.slice(indexForCategory + 1)
+            ];
+
             break;
 
         default:
@@ -47,7 +60,7 @@ export default (state = initialState, action) => {
     }
 }
 
-export const sortByAddedAt = (state) => {
+const sortByAddedAt = (state) => {
     return state.sort((a, b) => {
         const aAddedtAt = moment(a.addedAt);
         const bAddedtAt = moment(b.addedAt);
@@ -67,4 +80,12 @@ export const sortByAddedAt = (state) => {
 
 export const getAlbumById = (state, id) => {
     return state.filter(album => album.id === id)[0]
+}
+
+export const getAlbumsByCategoryFilter = (state, filter) => {
+    if(filter > 0) {
+        return sortByAddedAt(state.filter(album => album.category === filter))
+    }
+
+    return sortByAddedAt(state);
 }

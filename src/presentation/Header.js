@@ -2,7 +2,7 @@ import React, {PropTypes as pt} from 'react';
 
 import styles from './header.scss'
 
-const HeaderRightAction = props => {
+const HeaderAction = props => {
 
     if(typeof props.action === 'function') {
         return (
@@ -18,12 +18,19 @@ const HeaderRightAction = props => {
 const Header = (props) => {
     return (
         <header className={styles.header}>
-            <div className={styles.header__col}></div>
+            <div className={styles.header__col}>
+                <HeaderAction
+                    action={props.leftAction}
+                    onClick={props.onLeftActionClick}
+                />
+            </div>
+
             <div className={`${styles.header__col}  ${styles['header__col--title']}`}>
                 <h1 className={styles.header__title}>{props.title}</h1>
             </div>
+
             <div className={`${styles.header__col}  ${styles['is-right']}`}>
-                <HeaderRightAction
+                <HeaderAction
                     action={props.rightAction}
                     onClick={props.onRightActionClick}
                 />
@@ -35,13 +42,17 @@ const Header = (props) => {
 Header.defaultProps = {
     title: '',
     rightAction: '',
-    onRightActionClick: () => {}
+    leftAction: '',
+    onRightActionClick: () => {},
+    onLeftActionClick: () => {}
 }
 
 Header.propTypes = {
     title: pt.string,
     rightAction: pt.any,
-    onRightActionClick: pt.func
+    leftAction: pt.any,
+    onRightActionClick: pt.func,
+    onLeftActionClick: pt.func
 }
 
 export default Header;
