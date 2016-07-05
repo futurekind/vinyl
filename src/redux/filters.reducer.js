@@ -11,6 +11,13 @@ export default (state = initialState, action) => {
                 open: action.isOpen
             })
             break;
+
+        case 'SET_ACTIVE_FILTER':
+            return Object.assign({}, state, {
+                activeFilter: action.filter
+            })
+            break;
+
         default:
             return state
     }

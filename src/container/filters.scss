@@ -3,12 +3,27 @@
     left: -9999px;
     top: 0;
     opacity: 0;
-    background-color: rgba(0, 0, 0, .5);
-    transition: opacity .3s;
+
 
     &.is-open {
         width: 100%;
         height: 100%;
+        left: 0;
+        position: fixed;
+        opacity: 1
+    }
+}
+
+.backdrop {
+    width: 100%;
+    height: 100%;
+    position: absolute;
+    left: -9999px;
+    top: 0;
+    background-color: rgba(0, 0, 0, .5);
+    transition: opacity .3s;
+
+    .is-open & {
         left: 0;
         position: fixed;
         opacity: 1

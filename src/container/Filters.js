@@ -1,7 +1,7 @@
 import React, {Component} from 'react';
 import {connect} from 'react-redux';
 
-import {setFilterSettingsOpen} from '../redux/actions';
+import {setFilterSettingsOpen, setActiveFilter} from '../redux/actions';
 
 import style from './filters.scss';
 
@@ -10,14 +10,27 @@ class Filters extends Component {
         const {open, onSetFilterSettingsOpen, activeFilter} = this.props;
 
         return (
-            <div className={`${style.view} ${open ? style['is-open'] : ''}`} onClick={() => onSetFilterSettingsOpen(false)}>
+            <div className={`${style.view} ${open ? style['is-open'] : ''}`} >
+
+                <div className={style.backdrop} onClick={() => onSetFilterSettingsOpen(false)} />
+
                 <ul className={style.menu}>
-                    <li className={`${activeFilter === 0 ? style.active : ''}`}>Show All</li>
-                    <li className={`${activeFilter === 1 ? style.active : ''}`}>Show Listen</li>
-                    <li className={`${activeFilter === 2 ? style.active : ''}`}>Show Buy</li>
+                    <li onClick={this.handleSetActiveFilter.bind(this, 0)} className={`${activeFilter === 0 ? style.active : ''}`}>Show All</li>
+                    <li onClick={this.handleSetActiveFilter.bind(this, 1)} className={`${activeFilter === 1 ? style.active : ''}`}>Show Listen</li>
+                    <li onClick={this.handleSetActiveFilter.bind(this, 2)} className={`${activeFilter === 2 ? style.active : ''}`}>Show Buy</li>
                 </ul>
             </div>
         )
+    }
+
+    handleSetActiveFilter(filter) {
+        const {onSetActiveFilter, onSetFilterSettingsOpen} = this.props;
+
+        onSetActiveFilter(filter)
+
+        setTimeout(() => {
+            onSetFilterSettingsOpen(false);
+        }, 100)
     }
 }
 
@@ -29,6 +42,10 @@ const mapState = state => ({
 const mapDispatch= dispatch => ({
     onSetFilterSettingsOpen(open) {
         dispatch(setFilterSettingsOpen(open))
+    },
+
+    onSetActiveFilter(filter) {
+        dispatch(setActiveFilter(filter))
     }
 })
 

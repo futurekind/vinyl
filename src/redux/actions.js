@@ -68,6 +68,11 @@ export const setFilterSettingsOpen = (isOpen) => ({
     isOpen
 })
 
+export const setActiveFilter = filter => ({
+    type: 'SET_ACTIVE_FILTER',
+    filter
+})
+
 const setSearchResults = (results = []) => ({
     type: 'SET_SEARCHRESULTS',
     results
