@@ -19,7 +19,7 @@ class App extends Component {
             <div className={styles.app}>
 
                 <Header
-                    title="Vinyl"
+                    title="Recordman"
                     rightAction="Add"
                     onRightActionClick={() => setAddDialogOpen(true)}
                 />
