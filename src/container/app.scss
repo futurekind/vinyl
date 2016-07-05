@@ -16,6 +16,7 @@ html, body {
 }
 
 .main {
+    height: calc(100% - 64px);
     transition: transform .3s;
 }
 
