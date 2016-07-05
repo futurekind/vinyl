@@ -6,15 +6,11 @@ import AddDialog from './AddDialog';
 import DetailDialog from './DetailDialog';
 import Main from './Main';
 import {Header, Loader} from '../presentation';
-import {fetchData, setAddDialogOpen} from '../redux/actions';
+import {setAddDialogOpen} from '../redux/actions';
 
 import styles from './app.scss';
 
 class App extends Component {
-
-    componentDidMount() {
-        this.props.fetchData();
-    }
 
     render() {
         const {isFetching, dialogAddOpen, setAddDialogOpen, activeDetailId} = this.props;
