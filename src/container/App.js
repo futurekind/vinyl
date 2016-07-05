@@ -22,6 +22,8 @@ class App extends Component {
                     title="Recordman"
                     rightAction="Add"
                     onRightActionClick={() => setAddDialogOpen(true)}
+                    leftAction="Filter"
+                    onLeftActionClick={() => {}}
                 />
 
                 <Main>
