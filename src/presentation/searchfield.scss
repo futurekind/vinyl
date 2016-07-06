@@ -6,4 +6,10 @@
     padding: 10px;
     flex: 1;
     font-size: 16px;
+    border-radius: 0;
+    box-shadow: none;
+
+    &:focus {
+        outline: none;
+    }
 }
