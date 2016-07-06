@@ -39,6 +39,7 @@ class AlbumsList extends Component {
                         ref={album.id}
                         key={album.id}
                         isActive={activeDetailId === album.id}
+                        showCategoryIcon={activeFilter === 0}
                         {...album}
                         onClick={this.handleAlbumClick.bind(this, album.id)}
                     />
