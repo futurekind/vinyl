@@ -1,0 +1,47 @@
+.album {
+    width: 33.33%;
+    padding: 5px;
+    transition: transform .5s;
+
+    @media all and (min-width: 40em) {
+        width: 33.33%
+    }
+
+    &__cover {
+        padding-bottom: 100%;
+        position: relative;
+        background-color: #ccc;
+    }
+
+    &__loadinghelper {
+        width: 0;
+        height: 0;
+        position: absolute;
+        opacity: 0;
+    }
+
+    &__img {
+        height: 100%;
+        width: 100%;
+        position: absolute;
+        background-size: cover;
+        opacity: 0.01;
+        transition: opacity .5s;
+
+        &.is-loaded {
+            opacity: 1;
+        }
+    }
+
+    &__icon {
+        width: 10px;
+        height: 10px;
+        padding: 3px;
+        border-radius: 50%;
+        position: absolute;
+        bottom: 1px;
+        right: 1px;
+        fill: #333;
+        background-color: rgba(#9cc700, .8);
+    }
+}
