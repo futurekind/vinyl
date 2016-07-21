@@ -1,11 +1,17 @@
 import Header from './Header';
-import Main from './Main';
 import Loader from './Loader';
 import Album from './Album';
+import Dialog from './Dialog';
+import Icon from './Icon';
+import Searchfield from './Searchfield';
+import Btn from './Btn';
 
 export {
     Header,
-    Main,
     Loader,
-    Album
+    Album,
+    Dialog,
+    Icon,
+    Searchfield,
+    Btn
 }

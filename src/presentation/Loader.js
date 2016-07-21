@@ -6,7 +6,7 @@ const Loader = ({active}) => {
     return (
         <div className={`${styles.loader} ${active ? styles['is-active'] : ''}`}>
             <div className={styles.loader__spinner}></div>
-            <div className={styles.loader__glance} />
+            {/*<div className={styles.loader__glance} />*/}
         </div>
     )
 }

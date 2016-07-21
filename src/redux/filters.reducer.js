@@ -1,21 +1,20 @@
 const initialState = {
-    isFetching: false,
-    dialogAddOpen: false,
-    activeDetail: ''
+    open: false,
+    activeFilter: 0
 }
 
 export default (state = initialState, action) => {
-    switch (action.type) {
 
-        case 'SET_IS_FETCHING':
+    switch (action.type) {
+        case 'SET_FILTER_SETTINGS_OPEN':
             return Object.assign({}, state, {
-                isFetching: action.isFetching
+                open: action.isOpen
             })
             break;
 
-        case 'SET_ACTIVE_DETAIL':
+        case 'SET_ACTIVE_FILTER':
             return Object.assign({}, state, {
-                activeDetail: action.detailId
+                activeFilter: action.filter
             })
             break;
 
