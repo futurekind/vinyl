@@ -33,6 +33,17 @@ export default (state = initialState, action) => {
             ];
             break;
 
+        case 'SET_ALBUM_URL':
+            const indexForUrl = state.findIndex(album => album.id === action.albumId);
+            return [
+                ...state.slice(0, indexForUrl),
+                Object.assign({}, state[indexForUrl], {
+                    url: action.url
+                }),
+                ...state.slice(indexForUrl + 1)
+            ];
+            break;
+
         case 'DELETE_ALBUM':
             const indexToDelete = state.findIndex(album => album.id === action.id);
 
