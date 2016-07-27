@@ -16,6 +16,7 @@ export default (state = initialState, action) => {
                     title: action.data.collectionName,
                     artist: action.data.artistName,
                     cover: action.data.artworkUrl100,
+                    url: action.data.collectionViewUrl,
                     addedAt: new Date().toISOString()
                 }
             ];
