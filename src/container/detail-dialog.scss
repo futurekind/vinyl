@@ -16,6 +16,13 @@
 
     &__title {
         padding-left: 10px;
+        flex: 1;
+    }
+
+    &__actions {
+        width: 24px;
+        height: 24px;
+        align-self: flex-end;
     }
 }
 

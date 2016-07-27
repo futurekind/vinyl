@@ -52,6 +52,16 @@ export const fetchTracklistForAlbum = (albumId) => dispatch => {
     })
 }
 
+export const fetchItunesUrl = (albumId) => dispatch => {
+    jsonp(`https://itunes.apple.com/lookup?id=${albumId}`, (error, data) => {
+        dispatch({
+            type: 'SET_ALBUM_URL',
+            albumId,
+            url: data.results[0].collectionViewUrl
+        })
+    })
+}
+
 export const deleteAlbum = id => ({
     type: 'DELETE_ALBUM',
     id

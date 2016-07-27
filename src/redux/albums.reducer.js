@@ -16,6 +16,7 @@ export default (state = initialState, action) => {
                     title: action.data.collectionName,
                     artist: action.data.artistName,
                     cover: action.data.artworkUrl100,
+                    url: action.data.collectionViewUrl,
                     addedAt: new Date().toISOString()
                 }
             ];
@@ -29,6 +30,17 @@ export default (state = initialState, action) => {
                     tracklist: action.tracklist
                 }),
                 ...state.slice(indexForTracklist + 1)
+            ];
+            break;
+
+        case 'SET_ALBUM_URL':
+            const indexForUrl = state.findIndex(album => album.id === action.albumId);
+            return [
+                ...state.slice(0, indexForUrl),
+                Object.assign({}, state[indexForUrl], {
+                    url: action.url
+                }),
+                ...state.slice(indexForUrl + 1)
             ];
             break;
 

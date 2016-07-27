@@ -1,7 +1,7 @@
 import React, {Component} from 'react';
 import {connect} from 'react-redux';
 
-import {setDetailDialogOpen, setActiveDetail, fetchTracklistForAlbum, deleteAlbum, setAlbumCategory} from '../redux/actions';
+import {setDetailDialogOpen, setActiveDetail, fetchTracklistForAlbum, deleteAlbum, setAlbumCategory, fetchItunesUrl} from '../redux/actions';
 import {getAlbumById} from '../redux/root.reducer';
 
 import {Dialog, Icon} from '../presentation';
@@ -11,13 +11,18 @@ import style from './detail-dialog.scss';
 class DetailDialog extends Component {
 
     componentDidUpdate(oldProps) {
-        const {open, album, onFetchTracklist} = this.props;
+        const {open, album, onFetchTracklist, onFetchItunesUrl} = this.props;
 
         if(oldProps.open !== open) {
             if(open && !album.tracklist) {
                 onFetchTracklist(album.id)
             }
+
+            if(open && !album.url) {
+                onFetchItunesUrl(album.id)
+            }
         }
+
     }
 
     render() {
@@ -33,6 +38,9 @@ class DetailDialog extends Component {
                     <div className={style.header__title}>
                         <span className={style.title}>{album.title}</span>
                         <span className={style.artist}>{album.artist}</span>
+                    </div>
+                    <div className={style.header__actions}>
+                        {this.renderOpenInItunesBtn(album.url)}
                     </div>
                 </div>
 
@@ -51,6 +59,7 @@ class DetailDialog extends Component {
                             <Icon><path d="M7 18c-1.1 0-1.99.9-1.99 2S5.9 22 7 22s2-.9 2-2-.9-2-2-2zM1 2v2h2l3.6 7.59-1.35 2.45c-.16.28-.25.61-.25.96 0 1.1.9 2 2 2h12v-2H7.42c-.14 0-.25-.11-.25-.25l.03-.12.9-1.63h7.45c.75 0 1.41-.41 1.75-1.03l3.58-6.49c.08-.14.12-.31.12-.48 0-.55-.45-1-1-1H5.21l-.94-2H1zm16 16c-1.1 0-1.99.9-1.99 2s.89 2 1.99 2 2-.9 2-2-.9-2-2-2z"/></Icon>
                             <span>Buy</span>
                         </div>
+
                     </div>
 
                     <div className={style.footer__right}>
@@ -83,6 +92,16 @@ class DetailDialog extends Component {
         })
     }
 
+    renderOpenInItunesBtn(url) {
+        if(!url) return null;
+
+        return (
+            <span onClick={this.handleAppleMusicClick.bind(this)}>
+                <Icon><path d="M19 4H5c-1.11 0-2 .9-2 2v12c0 1.1.89 2 2 2h4v-2H5V8h14v10h-4v2h4c1.1 0 2-.9 2-2V6c0-1.1-.89-2-2-2zm-7 6l-4 4h3v6h2v-6h3l-4-4z"/></Icon>
+            </span>
+        )
+    }
+
     handleDismiss() {
         const {onSetDetailDialogOpen, onSetActiveDetail} = this.props;
 
@@ -103,6 +122,11 @@ class DetailDialog extends Component {
         const {album, onSetAlbumCategory} = this.props;
 
         onSetAlbumCategory(album.id, category);
+    }
+
+    handleAppleMusicClick() {
+        const {album} = this.props;
+        window.open(album.url);
     }
 }
 
@@ -131,6 +155,10 @@ const mapDispatch = dispatch => ({
 
     onSetAlbumCategory(id, category) {
         dispatch(setAlbumCategory(id, category))
+    },
+
+    onFetchItunesUrl(id) {
+        dispatch(fetchItunesUrl(id))
     }
 
 })
