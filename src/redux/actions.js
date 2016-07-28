@@ -1,4 +1,7 @@
 import jsonp from 'jsonp';
+import 'whatwg-fetch';
+
+export const API = 'https://api.myjson.com/bins/4r6zz'
 
 export const setIsFetching = isFetching => ({
     type: 'SET_IS_FETCHING',
@@ -23,6 +26,20 @@ export const searchApi = (searchterm) => dispatch => {
         dispatch(setIsSearching(false))
         dispatch(setSearchResults(data.results))
     })
+}
+
+export const fetchData = () => dispatch => {
+    dispatch(setIsFetching(true));
+
+    fetch(API)
+        .then(resp => resp.json())
+        .then(data => {
+            dispatch(setIsFetching(false));
+            dispatch({
+                type: 'SET_ALBUMS',
+                data: data
+            })
+        })
 }
 
 export const setActiveDetail = (detailId = '') => ({

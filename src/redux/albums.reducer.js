@@ -5,7 +5,7 @@ export default (state = initialState, action) => {
     switch (action.type) {
 
         case 'SET_ALBUMS':
-            return action.albums
+            return action.data || state
             break;
 
         case 'ADD_ALBUM':
