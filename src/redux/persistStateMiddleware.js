@@ -1,6 +1,16 @@
-const LOCALSTORAGE_KEY = 'vinylStore';
+import 'whatwg-fetch';
+import {API} from './actions';
 
-export const getDataFromLocalStorage = () => localStorage.getItem(LOCALSTORAGE_KEY);
+const exportStateToStorage = (state) => {
+    return fetch(API, {
+        method: 'PUT',
+        headers: {
+            'Accept': 'application/json',
+            'Content-Type': 'application/json'
+        },
+        body: state
+    })
+}
 
 export default store => next => action => {
     const result = next(action);
@@ -12,7 +22,7 @@ export default store => next => action => {
         case 'SET_ALBUM_CATEGORY':
         case 'SET_ALBUM_URL':
             const state = JSON.stringify(store.getState().albums);
-            localStorage.setItem(LOCALSTORAGE_KEY, state);
+            exportStateToStorage(state)
             break;
     }
 
