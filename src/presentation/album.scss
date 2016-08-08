@@ -1,10 +1,10 @@
 .album {
-    width: 33.33%;
+    width: 50%;
     padding: 5px;
     transition: transform .5s;
 
     @media all and (min-width: 40em) {
-        width: 33.33%
+        width: 150px;
     }
 
     &__cover {
