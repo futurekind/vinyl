@@ -79,6 +79,19 @@ export const fetchItunesUrl = (albumId) => dispatch => {
     })
 }
 
+export const fetchReleaseDate = (albumId) => dispatch => {
+    jsonp(`https://itunes.apple.com/lookup?id=${albumId}`, (error, data) => {
+        console.log(data.results[0]);
+
+        dispatch({
+            type: 'SET_ALBUM_RELEASE_DATE',
+            albumId,
+            releaseDate: data.results[0].releaseDate
+        })
+    })
+}
+
+
 export const deleteAlbum = id => ({
     type: 'DELETE_ALBUM',
     id
