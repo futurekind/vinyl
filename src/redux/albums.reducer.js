@@ -44,6 +44,17 @@ export default (state = initialState, action) => {
             ];
             break;
 
+        case 'SET_ALBUM_RELEASE_DATE':
+            const indexForReleaseDate = state.findIndex(album => album.id === action.albumId);
+            return [
+                ...state.slice(0, indexForReleaseDate),
+                Object.assign({}, state[indexForReleaseDate], {
+                    releaseDate: action.releaseDate
+                }),
+                ...state.slice(indexForReleaseDate + 1)
+            ];
+            break;
+
         case 'DELETE_ALBUM':
             const indexToDelete = state.findIndex(album => album.id === action.id);
 

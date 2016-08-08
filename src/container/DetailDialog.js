@@ -1,7 +1,8 @@
 import React, {Component} from 'react';
 import {connect} from 'react-redux';
+import moment from 'moment';
 
-import {setDetailDialogOpen, setActiveDetail, fetchTracklistForAlbum, deleteAlbum, setAlbumCategory, fetchItunesUrl} from '../redux/actions';
+import {setDetailDialogOpen, setActiveDetail, fetchTracklistForAlbum, deleteAlbum, setAlbumCategory, fetchItunesUrl, fetchReleaseDate} from '../redux/actions';
 import {getAlbumById} from '../redux/root.reducer';
 
 import {Dialog, Icon} from '../presentation';
@@ -11,7 +12,7 @@ import style from './detail-dialog.scss';
 class DetailDialog extends Component {
 
     componentDidUpdate(oldProps) {
-        const {open, album, onFetchTracklist, onFetchItunesUrl} = this.props;
+        const {open, album, onFetchTracklist, onFetchItunesUrl, onFetchReleaseDate} = this.props;
 
         if(oldProps.open !== open) {
             if(open && !album.tracklist) {
@@ -20,6 +21,10 @@ class DetailDialog extends Component {
 
             if(open && !album.url) {
                 onFetchItunesUrl(album.id)
+            }
+
+            if(open && !album.releaseDate) {
+                onFetchReleaseDate(album.id)
             }
         }
 
@@ -38,6 +43,9 @@ class DetailDialog extends Component {
                     <div className={style.header__title}>
                         <span className={style.title}>{album.title}</span>
                         <span className={style.artist}>{album.artist}</span>
+                        <span className={style.release}>{
+                            moment(album.releaseDate).format('MMMM YYYY')
+                        }</span>
                     </div>
                     <div className={style.header__actions}>
                         {this.renderOpenInItunesBtn(album.url)}
@@ -159,6 +167,10 @@ const mapDispatch = dispatch => ({
 
     onFetchItunesUrl(id) {
         dispatch(fetchItunesUrl(id))
+    },
+
+    onFetchReleaseDate(id) {
+        dispatch(fetchReleaseDate(id))
     }
 
 })
