@@ -82,33 +82,3 @@ export default (state = initialState, action) => {
             return state
     }
 }
-
-const sortByAddedAt = (state) => {
-    return state.sort((a, b) => {
-        const aAddedtAt = moment(a.addedAt);
-        const bAddedtAt = moment(b.addedAt);
-
-        if(aAddedtAt.isAfter(bAddedtAt)) {
-            return -1
-        }
-
-        if(aAddedtAt.isBefore(bAddedtAt)) {
-            return 1
-        }
-
-        return 0;
-
-    });
-}
-
-export const getAlbumById = (state, id) => {
-    return state.filter(album => album.id === id)[0]
-}
-
-export const getAlbumsByCategoryFilter = (state, filter) => {
-    if(filter > 0) {
-        return sortByAddedAt(state.filter(album => album.category === filter))
-    }
-
-    return sortByAddedAt(state);
-}

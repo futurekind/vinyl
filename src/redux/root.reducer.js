@@ -13,6 +13,3 @@ export default combineReducers({
     detailDialog,
     filters
 })
-
-export const getAlbumById = (state, id) => fromAlbums.getAlbumById(state.albums, id)
-export const getAlbumsByCategoryFilter = (state) => fromAlbums.getAlbumsByCategoryFilter(state.albums, state.filters.activeFilter)

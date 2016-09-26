@@ -3,7 +3,7 @@ import {findDOMNode} from 'react-dom';
 import {connect} from 'react-redux';
 
 import {setAddDialogOpen, setActiveDetail, setDetailDialogOpen, setFilterSettingsOpen} from '../redux/actions';
-import {getAlbumsByCategoryFilter} from '../redux/root.reducer';
+import {getAllAlbums} from '../redux/selectors';
 
 import styles from './albums-list.scss';
 
@@ -73,8 +73,9 @@ class AlbumsList extends Component {
 }
 
 const mapState = state => {
+    
     return {
-        albums: getAlbumsByCategoryFilter(state),
+        albums: getAllAlbums(state),
         activeDetailId: state.app.activeDetail,
         activeFilter: state.filters.activeFilter
     }
