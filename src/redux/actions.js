@@ -113,6 +113,11 @@ export const setActiveFilter = filter => ({
     filter
 })
 
+export const setActiveSort = sort => ({
+    type: 'SET_ACTIVE_SORT',
+    sort
+})
+
 const setSearchResults = (results = []) => ({
     type: 'SET_SEARCHRESULTS',
     results

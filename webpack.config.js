@@ -57,7 +57,7 @@ module.exports = {
 
             {
                 test: /\.scss$/,
-                loaders: ["style", "css?modules", "postcss", "sass"]
+                loaders: ["style", "css?modules&localIdentName=[name]__[local]__[hash:base64:5]", "postcss", "sass"]
             },
 
             {

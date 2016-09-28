@@ -1,6 +1,7 @@
 const initialState = {
     open: false,
-    activeFilter: 0
+    activeFilter: 0,
+    activeSort: 0
 }
 
 export default (state = initialState, action) => {
@@ -15,6 +16,12 @@ export default (state = initialState, action) => {
         case 'SET_ACTIVE_FILTER':
             return Object.assign({}, state, {
                 activeFilter: action.filter
+            })
+            break;
+
+        case 'SET_ACTIVE_SORT':
+            return Object.assign({}, state, {
+                activeSort: action.sort
             })
             break;
 

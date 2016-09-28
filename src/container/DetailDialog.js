@@ -3,7 +3,7 @@ import {connect} from 'react-redux';
 import moment from 'moment';
 
 import {setDetailDialogOpen, setActiveDetail, fetchTracklistForAlbum, deleteAlbum, setAlbumCategory, fetchItunesUrl, fetchReleaseDate} from '../redux/actions';
-import {getAlbumById} from '../redux/root.reducer';
+import {getAlbumById} from '../redux/selectors';
 
 import {Dialog, Icon} from '../presentation';
 

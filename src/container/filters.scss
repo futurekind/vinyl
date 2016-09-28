@@ -54,5 +54,23 @@
         &.active {
             background-color: lighten(#4a4a4a, 20%);
         }
+
+        &.sep {
+            margin: 10px 0;
+            padding: 0;
+            height: 1px;
+            background-color: lighten(#4a4a4a, 20%);
+        }
+
+        &.sort {
+            padding: 10px;
+            font-size: 12px;
+
+            &.active {
+                color: rgba(#9cc700, 1);
+                background: none;
+                font-weight: bold;
+            }
+        }
     }
 }

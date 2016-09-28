@@ -21,6 +21,7 @@ export default store => next => action => {
         case 'DELETE_ALBUM':
         case 'SET_ALBUM_CATEGORY':
         case 'SET_ALBUM_URL':
+        case 'SET_ALBUM_RELEASE_DATE':
             const state = JSON.stringify(store.getState().albums);
             exportStateToStorage(state)
             break;
