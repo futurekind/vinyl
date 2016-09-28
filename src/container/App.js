@@ -7,11 +7,16 @@ import DetailDialog from './DetailDialog';
 import Main from './Main';
 import Filters from './Filters';
 import {Header, Loader, Icon} from '../presentation';
-import {setAddDialogOpen, setFilterSettingsOpen} from '../redux/actions';
+import {setAddDialogOpen, setFilterSettingsOpen, fetchData} from '../redux/actions';
 
 import styles from './app.scss';
 
 class App extends Component {
+
+    componentDidMount() {
+        const {onFetchData} = this.props;
+        onFetchData();
+    }
 
     render() {
         const {isFetching, dialogAddOpen, setAddDialogOpen, activeDetailId, filterSettingsOpen, onSetFilterSettingsOpen} = this.props;
@@ -72,6 +77,10 @@ const mapDispatch = dispatch => ({
 
     onSetFilterSettingsOpen(open) {
         dispatch(setFilterSettingsOpen(open))
+    },
+
+    onFetchData() {
+        dispatch(fetchData())
     }
 })
 

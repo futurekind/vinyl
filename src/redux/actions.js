@@ -1,4 +1,7 @@
 import jsonp from 'jsonp';
+import 'whatwg-fetch';
+
+export const API = 'https://api.myjson.com/bins/4r6zz'
 
 export const setIsFetching = isFetching => ({
     type: 'SET_IS_FETCHING',
@@ -23,6 +26,20 @@ export const searchApi = (searchterm) => dispatch => {
         dispatch(setIsSearching(false))
         dispatch(setSearchResults(data.results))
     })
+}
+
+export const fetchData = () => dispatch => {
+    dispatch(setIsFetching(true));
+
+    fetch(API)
+        .then(resp => resp.json())
+        .then(data => {
+            dispatch(setIsFetching(false));
+            dispatch({
+                type: 'SET_ALBUMS',
+                data: data
+            })
+        })
 }
 
 export const setActiveDetail = (detailId = '') => ({
@@ -52,6 +69,29 @@ export const fetchTracklistForAlbum = (albumId) => dispatch => {
     })
 }
 
+export const fetchItunesUrl = (albumId) => dispatch => {
+    jsonp(`https://itunes.apple.com/lookup?id=${albumId}`, (error, data) => {
+        dispatch({
+            type: 'SET_ALBUM_URL',
+            albumId,
+            url: data.results[0].collectionViewUrl
+        })
+    })
+}
+
+export const fetchReleaseDate = (albumId) => dispatch => {
+    jsonp(`https://itunes.apple.com/lookup?id=${albumId}`, (error, data) => {
+        console.log(data.results[0]);
+
+        dispatch({
+            type: 'SET_ALBUM_RELEASE_DATE',
+            albumId,
+            releaseDate: data.results[0].releaseDate
+        })
+    })
+}
+
+
 export const deleteAlbum = id => ({
     type: 'DELETE_ALBUM',
     id
@@ -71,6 +111,11 @@ export const setFilterSettingsOpen = (isOpen) => ({
 export const setActiveFilter = filter => ({
     type: 'SET_ACTIVE_FILTER',
     filter
+})
+
+export const setActiveSort = sort => ({
+    type: 'SET_ACTIVE_SORT',
+    sort
 })
 
 const setSearchResults = (results = []) => ({

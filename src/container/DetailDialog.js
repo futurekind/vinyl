@@ -1,8 +1,9 @@
 import React, {Component} from 'react';
 import {connect} from 'react-redux';
+import moment from 'moment';
 
-import {setDetailDialogOpen, setActiveDetail, fetchTracklistForAlbum, deleteAlbum, setAlbumCategory} from '../redux/actions';
-import {getAlbumById} from '../redux/root.reducer';
+import {setDetailDialogOpen, setActiveDetail, fetchTracklistForAlbum, deleteAlbum, setAlbumCategory, fetchItunesUrl, fetchReleaseDate} from '../redux/actions';
+import {getAlbumById} from '../redux/selectors';
 
 import {Dialog, Icon} from '../presentation';
 
@@ -11,13 +12,22 @@ import style from './detail-dialog.scss';
 class DetailDialog extends Component {
 
     componentDidUpdate(oldProps) {
-        const {open, album, onFetchTracklist} = this.props;
+        const {open, album, onFetchTracklist, onFetchItunesUrl, onFetchReleaseDate} = this.props;
 
         if(oldProps.open !== open) {
             if(open && !album.tracklist) {
                 onFetchTracklist(album.id)
             }
+
+            if(open && !album.url) {
+                onFetchItunesUrl(album.id)
+            }
+
+            if(open && !album.releaseDate) {
+                onFetchReleaseDate(album.id)
+            }
         }
+
     }
 
     render() {
@@ -33,6 +43,12 @@ class DetailDialog extends Component {
                     <div className={style.header__title}>
                         <span className={style.title}>{album.title}</span>
                         <span className={style.artist}>{album.artist}</span>
+                        <span className={style.release}>{
+                            moment(album.releaseDate).format('MMMM YYYY')
+                        }</span>
+                    </div>
+                    <div className={style.header__actions}>
+                        {this.renderOpenInItunesBtn(album.url)}
                     </div>
                 </div>
 
@@ -42,7 +58,6 @@ class DetailDialog extends Component {
                 </div>
                 <div className={style.footer}>
                     <div className={style.footer__left}>
-                        <button onClick={this.handleAppleMusicClick.bind(this)}>Foo</button>
                         <div className={`${style.btn} ${album.category === 1 ? style.active : ''}`}  onClick={this.handleSetCategory.bind(this, 1)}>
                             <Icon><path d="M17 20c-.29 0-.56-.06-.76-.15-.71-.37-1.21-.88-1.71-2.38-.51-1.56-1.47-2.29-2.39-3-.79-.61-1.61-1.24-2.32-2.53C9.29 10.98 9 9.93 9 9c0-2.8 2.2-5 5-5s5 2.2 5 5h2c0-3.93-3.07-7-7-7S7 5.07 7 9c0 1.26.38 2.65 1.07 3.9.91 1.65 1.98 2.48 2.85 3.15.81.62 1.39 1.07 1.71 2.05.6 1.82 1.37 2.84 2.73 3.55.51.23 1.07.35 1.64.35 2.21 0 4-1.79 4-4h-2c0 1.1-.9 2-2 2zM7.64 2.64L6.22 1.22C4.23 3.21 3 5.96 3 9s1.23 5.79 3.22 7.78l1.41-1.41C6.01 13.74 5 11.49 5 9s1.01-4.74 2.64-6.36zM11.5 9c0 1.38 1.12 2.5 2.5 2.5s2.5-1.12 2.5-2.5-1.12-2.5-2.5-2.5-2.5 1.12-2.5 2.5z"/></Icon>
                             <span>Listen</span>
@@ -83,6 +98,16 @@ class DetailDialog extends Component {
                 </div>
             )
         })
+    }
+
+    renderOpenInItunesBtn(url) {
+        if(!url) return null;
+
+        return (
+            <span onClick={this.handleAppleMusicClick.bind(this)}>
+                <Icon><path d="M19 4H5c-1.11 0-2 .9-2 2v12c0 1.1.89 2 2 2h4v-2H5V8h14v10h-4v2h4c1.1 0 2-.9 2-2V6c0-1.1-.89-2-2-2zm-7 6l-4 4h3v6h2v-6h3l-4-4z"/></Icon>
+            </span>
+        )
     }
 
     handleDismiss() {
@@ -138,6 +163,14 @@ const mapDispatch = dispatch => ({
 
     onSetAlbumCategory(id, category) {
         dispatch(setAlbumCategory(id, category))
+    },
+
+    onFetchItunesUrl(id) {
+        dispatch(fetchItunesUrl(id))
+    },
+
+    onFetchReleaseDate(id) {
+        dispatch(fetchReleaseDate(id))
     }
 
 })

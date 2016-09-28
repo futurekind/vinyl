@@ -1,14 +1,16 @@
 .album {
-    width: 33.33%;
-    padding: 5px;
+    width: 100%;
+    max-width: 420px;
+    padding: 5px 0;
+    display: flex;
+    align-items: center;
     transition: transform .5s;
-
-    @media all and (min-width: 40em) {
-        width: 33.33%
-    }
+    color: #fff;
+    cursor: pointer;
 
     &__cover {
-        padding-bottom: 100%;
+        width: 100px;
+        height: 100px;
         position: relative;
         background-color: #ccc;
     }
@@ -38,10 +40,25 @@
         height: 10px;
         padding: 3px;
         border-radius: 50%;
-        position: absolute;
-        bottom: 1px;
-        right: 1px;
-        fill: #333;
-        background-color: rgba(#9cc700, .8);
+        fill: #fff;
+
+        &--highlight {
+            fill: rgba(#9cc700, .8);
+        }
+    }
+
+    &__desc {
+        padding: 0 20px;
+        flex: 1;
+
+        &__title {
+            margin-bottom: 5px;
+            font-weight: bold;
+        }
+
+        &__artist {
+            font-style: italic;
+            font-size: 12px;
+        }
     }
 }

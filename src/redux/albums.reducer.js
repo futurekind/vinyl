@@ -5,7 +5,7 @@ export default (state = initialState, action) => {
     switch (action.type) {
 
         case 'SET_ALBUMS':
-            return action.albums
+            return action.data || state
             break;
 
         case 'ADD_ALBUM':
@@ -30,6 +30,28 @@ export default (state = initialState, action) => {
                     tracklist: action.tracklist
                 }),
                 ...state.slice(indexForTracklist + 1)
+            ];
+            break;
+
+        case 'SET_ALBUM_URL':
+            const indexForUrl = state.findIndex(album => album.id === action.albumId);
+            return [
+                ...state.slice(0, indexForUrl),
+                Object.assign({}, state[indexForUrl], {
+                    url: action.url
+                }),
+                ...state.slice(indexForUrl + 1)
+            ];
+            break;
+
+        case 'SET_ALBUM_RELEASE_DATE':
+            const indexForReleaseDate = state.findIndex(album => album.id === action.albumId);
+            return [
+                ...state.slice(0, indexForReleaseDate),
+                Object.assign({}, state[indexForReleaseDate], {
+                    releaseDate: action.releaseDate
+                }),
+                ...state.slice(indexForReleaseDate + 1)
             ];
             break;
 
@@ -59,34 +81,4 @@ export default (state = initialState, action) => {
         default:
             return state
     }
-}
-
-const sortByAddedAt = (state) => {
-    return state.sort((a, b) => {
-        const aAddedtAt = moment(a.addedAt);
-        const bAddedtAt = moment(b.addedAt);
-
-        if(aAddedtAt.isAfter(bAddedtAt)) {
-            return -1
-        }
-
-        if(aAddedtAt.isBefore(bAddedtAt)) {
-            return 1
-        }
-
-        return 0;
-
-    });
-}
-
-export const getAlbumById = (state, id) => {
-    return state.filter(album => album.id === id)[0]
-}
-
-export const getAlbumsByCategoryFilter = (state, filter) => {
-    if(filter > 0) {
-        return sortByAddedAt(state.filter(album => album.category === filter))
-    }
-
-    return sortByAddedAt(state);
 }
