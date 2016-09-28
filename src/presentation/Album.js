@@ -18,13 +18,36 @@ class Album extends Component {
         super();
 
         this.state = {
-            isloaded: false
+            isloaded: false,
+            movedX: 0,
+            currentX: 0,
+            startX: 0
+        }
+
+        this.handleTouchStart = this.handleTouchStart.bind(this);
+        this.handleTouchMove = this.handleTouchMove.bind(this);
+    }
+
+    componentWillReceiveProps (nextProps) {
+        
+    }
+
+    componentDidUpdate (prevProps, prevState) {
+        const { currentX, movedX } = this.state; 
+
+        if(currentX !== prevState.currentX) {
+            this.setState({
+                movedX: movedX - 1
+            })
         }
     }
+    
+    
 
     render() {
         const {cover, title, artist, onClick, category, showCategoryIcon} = this.props;
-        const {isLoaded} = this.state;
+        const { isLoaded, movedX } = this.state;
+        // const normlizedMoveX = Math.abs(movedX) > 10 ? 0 : movedX
         let icon = null;
 
         if(showCategoryIcon) {
@@ -33,18 +56,39 @@ class Album extends Component {
         }
 
         return (
-            <div className={styles.album} onClick={onClick} ref="album">
-                <img src={cover} onLoad={() => this.setState({isLoaded: true})} className={styles.album__loadinghelper} />
-                <div className={styles.album__cover}>
-                    <div className={`${styles.album__img} ${isLoaded ?  styles['is-loaded'] : ''}`} style={{backgroundImage: `url('${cover}')`}} />
+            <div className={styles.view} onClick={onClick} ref="album">
+                <div className={styles.album} onTouchMove={this.handleTouchMove} onTouchStart={this.handleTouchStart} style={{
+                    transform: `translateX(${movedX * 2}px)` 
+                }}>
+                    <img src={cover} onLoad={() => this.setState({isLoaded: true})} className={styles.album__loadinghelper} />
+                    <div className={styles.album__cover}>
+                        <div className={`${styles.album__img} ${isLoaded ?  styles['is-loaded'] : ''}`} style={{backgroundImage: `url('${cover}')`}} />
+                    </div>
+                    <div className={styles.album__desc}>
+                        <div className={styles.album__desc__title}>{title}</div>
+                        <div className={styles.album__desc__artist}>{artist}</div>
+                    </div>
+                    {icon}
                 </div>
-                <div className={styles.album__desc}>
-                    <div className={styles.album__desc__title}>{title}</div>
-                    <div className={styles.album__desc__artist}>{artist}</div>
-                </div>
-                {icon}
             </div>
         )
+    }
+
+    handleTouchMove(e) {
+        e.persist();
+            this.setState({
+                currentX: e.touches.item(0).clientX
+            })
+        requestAnimationFrame(() => {
+        })
+    }
+
+    handleTouchStart(e) {
+        e.persist();
+        this.setState({
+            currentX: e.touches.item(0).clientX,
+            movedX: 0
+        })
     }
 
 
